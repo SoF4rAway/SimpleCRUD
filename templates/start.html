@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}A simple CRUD example{% endblock %}
+
+{% block content %}
+<div class="row py-5">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="row">
+                <div class="col-8">
+                    <div class="d-grid gap-5 py-5 mx-5">
+                        <h2 class="text-center">Task Manager</h2>
+                        <a class="btn btn-outline-dark" type="button" href="{{ url_for('login') }}">Login</a>
+                        <a class="btn btn-outline-primary" type="button" href="{{ url_for('signup') }}">Signup</a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+    </div>
+</div>
+{% endblock %}

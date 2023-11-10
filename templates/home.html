@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center my-5">
+    <div class="row">
+        <div class="col-9">
+            <div class="card py-3">
+                <h1 class="card-title mb-5 mt-1">
+                    Task Manager
+                </h1>
+                {% if user_tasks|length <1 %}
+                <h5>There are no Task currently listed, Create one below</h5>
+                {% else %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Date Created</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in user_tasks %}
+                    <tr>
+                        <td>{{ task[2] }}</td>
+                        <td>{{ task[3]}}</td>
+                        <td><a href="/delete/{{ task[1]}}" class="btn btn-danger bx bxs-trash" type="submit"></a>
+                            <a href="/update/{{ task[1]}}" class="btn btn-success bx bx-refresh" type="submit"></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                <br>
+                <form action="{{ url_for('home') }}" method="post">
+                    <input type="text" id="task" name="task">
+                    <button type="submit" class="bx bx-plus-circle btn btn-primary"></button>
+                </form>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card pt-3 pb-2">
+                <h3 class="card-title">
+                    User Information
+                </h3>
+                <table class="table">
+                    <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row">Username</th>
+                        <td>{{ username }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Task Count</th>
+                        <td>{{ user_tasks|length }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="/logout">
+                    <button class="bx bx-log-out btn"></button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
